@@ -28,6 +28,8 @@ namespace WebApi
         {
             services.AddControllers();
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();  //jwt için
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -44,6 +46,7 @@ namespace WebApi
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
+            ServiceTool.Create(services);    //jwt için
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
