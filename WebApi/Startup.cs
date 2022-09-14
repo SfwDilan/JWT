@@ -58,6 +58,9 @@ namespace WebApi
 
             app.UseRouting();
 
+            app.UseAuthentication(); //Jwt için 
+
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
